@@ -119,12 +119,60 @@ export default () => {
         }
       </Row>
       <Row>
-        <Input label='x-offset' value={xOffset} onChange={(value) => setXoffset(value)} />
-        <Input label='y-offset' value={yOffset} onChange={(value) => setYoffset(value)} />
-        <Input label='blur radius' value={blurRadius} onChange={(value) => setBlurRadius(value)} />
-        <Input label='spread' value={spread} onChange={(value) => setSpread(value)} />
+        <Input
+          label='x-offset'
+          value={xOffset}
+          onChange={(value) => {
+            if (isNaN(value)) {
+              if (value === '-') {
+                setXoffset(value)
+              }
+            }else {
+              setXoffset(value)
+            }
+          }}
+        />
+        <Input
+          label='y-offset'
+          value={yOffset}
+          onChange={(value) => {
+            if (isNaN(value)) {
+              if (value === '-') {
+                setYoffset(value)
+              }
+            }else {
+              setYoffset(value)
+            }
+          }}
+        />
+        <Input
+          label='blur radius'
+          value={blurRadius}
+          onChange={(value) => {
+            if (!isNaN(value)) {
+              setBlurRadius(value)
+            }
+          }}
+        />
+        <Input
+          label='spread'
+          value={spread}
+          onChange={(value) => {
+            if (!isNaN(value)) {
+              setSpread(value)
+            }
+          }}
+        />
         <Input label='color' value={color} onChange={(value) => setColor(value)} type="color" />
-        <Input label='opacity' value={opacity} onChange={(value) => setOpacity(value)} />
+        <Input
+          label='opacity'
+          value={opacity}
+          onChange={(value) => {
+            if (!isNaN(value)) {
+              setOpacity(value)
+            }
+          }}
+        />
       </Row>
       <span>CSS Rule</span>
       <BorderBox>
