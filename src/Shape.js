@@ -149,7 +149,7 @@ export default () => {
           label='blur radius'
           value={blurRadius}
           onChange={(value) => {
-            if (!isNaN(value)) {
+            if (!isNaN(value) && value.search('-') === -1) {
               setBlurRadius(value)
             }
           }}
@@ -158,7 +158,7 @@ export default () => {
           label='spread'
           value={spread}
           onChange={(value) => {
-            if (!isNaN(value)) {
+            if (!isNaN(value) && value.search('-') === -1) {
               setSpread(value)
             }
           }}
@@ -168,7 +168,7 @@ export default () => {
           label='opacity'
           value={opacity}
           onChange={(value) => {
-            if (!isNaN(value)) {
+            if (!isNaN(value) && value.search('-') === -1) {
               setOpacity(value)
             }
           }}
