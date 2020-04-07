@@ -48,11 +48,17 @@ const Text = styled.span`
   letter-spacing: 0.02em;
   color: #000000;
   text-align: center;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 366px;
 `
 
 export default () => {
   return(
-    <div style={styles.container}>
+    <Container>
       <Input label='X-offset' />
       <Input label='Y-offset' />
       <Input label='Spread' />
@@ -66,15 +72,6 @@ export default () => {
       <BoxShadow>
         <Text>10px 20px 15px 20px rgba(0,0,0,0,0.7)</Text>
       </BoxShadow>
-    </div>
+    </Container>
   )
-}
-
-
-const styles = {
-  container:{
-    display: 'flex',
-    flexDirection: 'column',
-    width: 366
-  }
 }

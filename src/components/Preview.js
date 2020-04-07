@@ -1,20 +1,22 @@
 import React from 'react';
 
+import styled from 'styled-components';
+
 import PreviewContainer from './PreviewContainer';
 import SelectShape from './SelectShape';
 import CssCode from './CssCode';
 
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export default () => {
   return(
-    <div style={styles.container}>
+    <Column>
       <PreviewContainer />
       <SelectShape />
       <CssCode />
-    </div>
+    </Column>
   )
-}
-
-const styles = {
-  display: 'flex',
-  flexDirection: 'column'
 }

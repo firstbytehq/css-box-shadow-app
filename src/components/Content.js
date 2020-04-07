@@ -18,7 +18,7 @@ const Content = styled.div`
 `
 
 export default () => (
-  <Content className='second'>
+  <Content>
     <Controls />
     <Preview />
   </Content>

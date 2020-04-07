@@ -103,7 +103,7 @@ export default ({ type, label }) => {
     return(
       <Row>
         <Label>{label}</Label>
-        <div style={styles.colorRow}>
+        <ColorRow>
         <input
           //value={value}
           type={type}
@@ -111,7 +111,7 @@ export default ({ type, label }) => {
           //onChange={(e) => onChange(e.target.value)}
         />
         <Color>#c05151</Color>
-      </div>
+      </ColorRow>
       </Row>
     )
   }else {
@@ -130,9 +130,7 @@ export default ({ type, label }) => {
   }
 }
 
-const styles = {
-  colorRow: {
-    display: 'flex',
-    flexDirection: 'row'
-  }
-}
+const ColorRow = styled.div`
+ display: flex;
+ flex-direction: row;
+`
