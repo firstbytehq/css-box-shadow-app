@@ -23,6 +23,7 @@ const ValueContainer = styled.input`
   line-height: 30px;
   padding-top: 2px;
   color: #8D8D8D;
+  margin-right: ${props => props.label === 'Opacity'&& '20px'};
 `;
 
 export const Label = styled.span`
@@ -123,13 +124,26 @@ export default ({ type, label, value, onChange }) => {
             <ValueContainer
               value={value}
               onChange={(e) => onChange(e.target.value)}
+              label={label}
             />
-            <Px>px</Px>
+            <Px>{label !== 'Opacity'&& 'px'}</Px>
           </Row>
         </Row>
         <input
           type="range"
-          min="1" max="100"
+          step={label === 'Opacity' && "0.01"}
+          min={
+            label === 'X-offset' || label === 'Y-offset'
+            ? "-100"
+            : "0"
+          }
+          max={
+            label === 'X-offset' || label === 'Y-offset'
+            ? "100"
+            : label === 'Opacity'? "1"
+            // : label === 'Blur radius' ? "100"
+            : "100"
+          }
           value={value}
           class="slider"
           id="myRange"

@@ -32,7 +32,6 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
     <Input
       label='Y-offset'
       value={yOffset}
-      key='yOffset'
       onChange={(value) => {
         if (isNaN(value)) {
           if (value === '-') {
@@ -46,7 +45,6 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
     <Input
       label='Spread'
       value={spread}
-      key='spread'
       onChange={(value) => {
         if (!isNaN(value) && value.search('-') === -1) {
           updateShadowProperty({ key: 'spread', value })
@@ -56,7 +54,6 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
     <Input
       label='Blur radius'
       value={blurRadius}
-      key='blurRadius'
       onChange={(value) => {
         if (!isNaN(value) && value.search('-') === -1) {
           updateShadowProperty({ key: 'blurRadius', value })
@@ -66,7 +63,6 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
     <Input
       label='Opacity'
       value={opacity}
-      key='opacity'
       onChange={(value) => {
         if (!isNaN(value) && value.search('-') === -1) {
           updateShadowProperty({ key: 'opacity', value})
@@ -77,7 +73,6 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
       type='color'
       label='Shadow color'
       value={shadowColor}
-      key='shadowColor'
       onChange={(value) => updateShadowProperty({ key: 'shadowColor', value })}
     />
     </>
