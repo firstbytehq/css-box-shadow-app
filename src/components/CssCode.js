@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import styled from 'styled-components';
 
 const CodeContainer = styled.div`
@@ -46,17 +48,41 @@ color: #F5EFEF;
 
 `
 
-export default () => (
+const CssCode = ({ boxShadow }) => {
+
+  const copyCss = (copyText) => {
+    let input = document.createElement('textarea');
+    input.innerHTML = copyText;
+    document.body.appendChild(input);
+    input.select();
+    let result = document.execCommand('copy');
+    document.body.removeChild(input);
+    return result;
+  }
+
+  return(
   <>
     <CodeContainer>
       <Code>
-        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0);
-        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0);
-         box-shadow: 10px 10px 5px 0px rgba(0,0,0,0);
+         {`-webkit-box-shadow: ${boxShadow};`} <br/>
+         {`-moz-box-shadow: ${boxShadow};`} <br/>
+         {`box-shadow: ${boxShadow};`}
       </Code>
     </CodeContainer>
-    <Button>
+    <Button
+      onClick={() =>
+        copyCss(
+          `-webkit-box-shadow: ${boxShadow};
+           -moz-box-shadow: ${boxShadow};
+            box-shadow: ${boxShadow};`
+        )
+      }
+    >
       Copy css
     </Button>
   </>
-)
+)}
+
+const mapStateToProps = state => ({ boxShadow: state.boxShadow })
+
+export default connect(mapStateToProps)(CssCode)

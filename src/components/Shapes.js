@@ -6,6 +6,7 @@ export const Rectangle = styled.div`
   background: #F5EFEF;
   border: ${props => `5px solid ${props.isSelected? '#C22256' : 'transparent'}`};
   box-sizing: border-box;
+  cursor: pointer;
 `;
 export const RoundedRectangle = styled.div`
   width: 78px;
@@ -13,6 +14,7 @@ export const RoundedRectangle = styled.div`
   background: #F5EFEF;
   border-radius: 10px;
   border: ${props => `5px solid ${props.isSelected? '#C22256' : 'transparent'}`};
+  cursor: pointer;
 `;
 export const Circle = styled.div`
   width: 55px;
@@ -20,4 +22,5 @@ export const Circle = styled.div`
   background: #F5EFEF;
   border-radius: 35px;
   border: ${props => `5px solid ${props.isSelected? '#C22256' : 'transparent'}`};
+  cursor: pointer;
 `

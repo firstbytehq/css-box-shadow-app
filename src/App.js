@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import Shape from './Shape.js';
+import { connect } from 'react-redux';
+
 import Header from 'components/Header';
 import Introduction from 'components/Introduction';
 import Content from 'components/Content';
 
-function App() {
+import { loadShadowproperty } from 'reducer';
+
+ const App = ({ loadShadowproperty }) => {
+
+   useEffect(() => {
+     loadShadowproperty()
+   },[loadShadowproperty])
+
   return (
     <>
       <Header />
@@ -14,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null,{loadShadowproperty}) (App);

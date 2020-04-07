@@ -25,7 +25,7 @@ const Text = styled.span`
   color: #FFFFFF;
 `
 
-const PreviewContainer = ({ ActiveShape, shapes }) => {
+const PreviewContainer = ({ ActiveShape, shapes, boxShadow }) => {
 
   const selectedShape = shapes.find(item=> item.isSelected === true);
 
@@ -34,21 +34,26 @@ const PreviewContainer = ({ ActiveShape, shapes }) => {
     height: ${selectedShape.id === 'circle' ? '200px' : '174px'};
     border-radius: ${selectedShape.id === 'circle' && '100%'};
     background: #C22256;
-    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+    box-shadow: ${props => props.boxShadow&& props.boxShadow}; /*0px 4px 30px rgba(0, 0, 0, 0.25);*/
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: auto;
   `;
 
   return (
     <Container>
-      <Preview>
+      <Preview boxShadow={boxShadow}>
         <Text>Preview</Text>
       </Preview>
     </Container>
   )
 }
 
-const mapStateToProps = (state) => ({ ActiveShape: state.ActiveShape, shapes: state.shapes })
+const mapStateToProps = (state) => ({
+  ActiveShape: state.ActiveShape,
+  shapes: state.shapes,
+  boxShadow: state.boxShadow
+})
 
 export default connect(mapStateToProps)(PreviewContainer)

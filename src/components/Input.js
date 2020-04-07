@@ -98,19 +98,19 @@ const Color = styled.span`
   padding-top: 2px;
 `
 
-export default ({ type, label }) => {
+export default ({ type, label, value, onChange }) => {
   if (type === 'color') {
     return(
       <Row>
         <Label>{label}</Label>
         <ColorRow>
         <input
-          //value={value}
+          value={value}
           type={type}
           style={{height: 22}}
-          //onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
         />
-        <Color>#c05151</Color>
+        <Color>{value}</Color>
       </ColorRow>
       </Row>
     )
@@ -120,11 +120,21 @@ export default ({ type, label }) => {
         <Row>
           <Label>{label}</Label>
           <Row>
-            <ValueContainer value="50" />
+            <ValueContainer
+              value={value}
+              onChange={(e) => onChange(e.target.value)}
+            />
             <Px>px</Px>
           </Row>
         </Row>
-        <input type="range" min="1" max="100" value="70" class="slider" id="myRange"/>
+        <input
+          type="range"
+          min="1" max="100"
+          value={value}
+          class="slider"
+          id="myRange"
+          onChange={(e) => onChange(e.target.value)}
+        />
       </SliderContainer>
     )
   }
