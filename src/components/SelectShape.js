@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 import { Label } from 'components/Input';
+
+import { selectShape } from 'reducer';
 
 const ShapeContainer = styled.div`
   width: 483px;
@@ -15,33 +18,23 @@ const ShapeContainer = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
-const Rectangle = styled.div`
-  width: 79px;
-  height: 53px;
-  background: #F5EFEF;
-  border: 5px solid #C22256;
-  box-sizing: border-box;
-`;
-const RoundedRectangle = styled.div`
-  width: 78px;
-  height: 53px;
-  background: #F5EFEF;
-  border-radius: 10px;
-`;
-const Circle = styled.div`
-  width: 55px;
-  height: 55px;
-  background: #F5EFEF;
-  border-radius: 27.5px;
-`
 
-export default () => (
+const SelectShape = ({ shapes, selectShape }) => (
   <>
     <Label>Select shape</Label>
     <ShapeContainer>
-      <Rectangle />
-      <RoundedRectangle />
-      <Circle />
+      {
+        shapes.map(shape => {
+          const { Shape, isSelected, id } = shape;
+          return(
+            <Shape isSelected={isSelected} onClick = { () => selectShape(id)} key={id} />
+          )
+        })
+      }
     </ShapeContainer>
   </>
 )
+
+const mapStateToProps = (state) => ({ shapes: state.shapes });
+
+export default connect(mapStateToProps,{selectShape}) (SelectShape)

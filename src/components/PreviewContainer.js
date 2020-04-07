@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import styled from 'styled-components';
+
 
 const Container = styled.div`
   width: 480px;
@@ -13,15 +16,6 @@ const Container = styled.div`
   align-items: center;
   margin-bottom: 61px;
 `;
-const Preview = styled.div`
-  width: 250px;
-  height: 174px;
-  background: #C22256;
-  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 const Text = styled.span`
   font-family: Merriweather Sans;
   font-style: normal;
@@ -31,7 +25,21 @@ const Text = styled.span`
   color: #FFFFFF;
 `
 
-export default () => {
+const PreviewContainer = ({ ActiveShape, shapes }) => {
+
+  const selectedShape = shapes.find(item=> item.isSelected === true);
+
+  const Preview = styled(ActiveShape)`
+    width: ${selectedShape.id === 'circle' ? '200px' : '250px'};
+    height: ${selectedShape.id === 'circle' ? '200px' : '174px'};
+    border-radius: ${selectedShape.id === 'circle' && '100%'};
+    background: #C22256;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `;
+
   return (
     <Container>
       <Preview>
@@ -40,3 +48,7 @@ export default () => {
     </Container>
   )
 }
+
+const mapStateToProps = (state) => ({ ActiveShape: state.ActiveShape, shapes: state.shapes })
+
+export default connect(mapStateToProps)(PreviewContainer)

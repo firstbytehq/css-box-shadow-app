@@ -61,7 +61,6 @@ color: #000000;
 export default () => {
 
   useEffect(() => {
-    console.log('use');
     window.scrollBy(0, 0)
   })
 
