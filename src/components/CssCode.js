@@ -48,7 +48,9 @@ color: #F5EFEF;
 
 `
 
-const CssCode = ({ boxShadow }) => {
+const CssCode = ({ shadowControls }) => {
+
+  const boxShadow = shadowControls.find(item=> item.isActive === true).boxShadow;
 
   const copyCss = (copyText) => {
     let input = document.createElement('textarea');
@@ -83,6 +85,6 @@ const CssCode = ({ boxShadow }) => {
   </>
 )}
 
-const mapStateToProps = state => ({ boxShadow: state.boxShadow })
+const mapStateToProps = state => ({ shadowControls: state.shadowControls })
 
 export default connect(mapStateToProps)(CssCode)

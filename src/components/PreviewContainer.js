@@ -27,7 +27,9 @@ const Text = styled.span`
   color: #FFFFFF;
 `
 
-const PreviewContainer = ({ shapes, boxShadow }) => {
+const PreviewContainer = ({ shapes, shadowControls }) => {
+
+  const boxShadow = shadowControls.find(item=> item.isActive === true).boxShadow;
 
   const selectedShape = shapes.find(item=> item.isSelected === true);
 
@@ -67,7 +69,7 @@ const PreviewContainer = ({ shapes, boxShadow }) => {
 
 const mapStateToProps = (state) => ({
   shapes: state.shapes,
-  boxShadow: state.boxShadow
+  shadowControls: state.shadowControls
 })
 
 export default connect(mapStateToProps)(PreviewContainer)
