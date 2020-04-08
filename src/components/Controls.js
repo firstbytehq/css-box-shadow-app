@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
-import Input from './Input';
+import InputContainer from 'components/InputContainer';
 
 const Line = styled.div`
   width: 366px; /* 379 */
@@ -56,22 +57,24 @@ const Container = styled.div`
   width: 366px;
 `
 
-export default () => {
+const Controls = ({ shadowControls, boxShadow }) => {
   return(
     <Container>
-      <Input label='X-offset' />
-      <Input label='Y-offset' />
-      <Input label='Spread' />
-      <Input label='Blur radius' />
-      <Input label='Opacity' />
-      <Input type='color' label='Shadow color' />
+      <InputContainer />
       <Line/>
       <ButtonContainer>
         <Button>Add new +</Button>
       </ButtonContainer>
       <BoxShadow>
-        <Text>10px 20px 15px 20px rgba(0,0,0,0,0.7)</Text>
+        <Text>{boxShadow}</Text>
       </BoxShadow>
     </Container>
   )
 }
+
+const mapStateToProps = (state) => ({
+  shadowControls: state.shadowControls,
+  boxShadow: state.boxShadow
+ });
+
+export default connect(mapStateToProps)(Controls)

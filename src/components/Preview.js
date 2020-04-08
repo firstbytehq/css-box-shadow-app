@@ -2,9 +2,9 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import PreviewContainer from './PreviewContainer';
-import SelectShape from './SelectShape';
-import CssCode from './CssCode';
+import PreviewContainer from 'components/PreviewContainer';
+import SelectShape from 'components/SelectShape';
+import CssCode from 'components/CssCode';
 
 const Column = styled.div`
   display: flex;

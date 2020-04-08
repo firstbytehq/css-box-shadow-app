@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { cards } from 'assets/images';
@@ -59,11 +59,6 @@ color: #000000;
 `
 
 export default () => {
-
-  useEffect(() => {
-    console.log('use');
-    window.scrollBy(0, 0)
-  })
 
   return(
     <Container>

@@ -2,8 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import Controls from './Controls';
-import Preview from './Preview';
+import Controls from 'components/Controls';
+import Preview from 'components/Preview';
 
 const Content = styled.div`
   ${'' /* width: 1440px; */}

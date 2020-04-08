@@ -23,6 +23,7 @@ const ValueContainer = styled.input`
   line-height: 30px;
   padding-top: 2px;
   color: #8D8D8D;
+  margin-right: ${props => props.label === 'Opacity'&& '20px'};
 `;
 
 export const Label = styled.span`
@@ -98,19 +99,19 @@ const Color = styled.span`
   padding-top: 2px;
 `
 
-export default ({ type, label }) => {
+export default ({ type, label, value, onChange }) => {
   if (type === 'color') {
     return(
       <Row>
         <Label>{label}</Label>
         <ColorRow>
         <input
-          //value={value}
+          value={value}
           type={type}
           style={{height: 22}}
-          //onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
         />
-        <Color>#c05151</Color>
+        <Color>{value}</Color>
       </ColorRow>
       </Row>
     )
@@ -120,11 +121,34 @@ export default ({ type, label }) => {
         <Row>
           <Label>{label}</Label>
           <Row>
-            <ValueContainer value="50" />
-            <Px>px</Px>
+            <ValueContainer
+              value={value}
+              onChange={(e) => onChange(e.target.value)}
+              label={label}
+            />
+            <Px>{label !== 'Opacity'&& 'px'}</Px>
           </Row>
         </Row>
-        <input type="range" min="1" max="100" value="70" class="slider" id="myRange"/>
+        <input
+          type="range"
+          step={label === 'Opacity' && "0.01"}
+          min={
+            label === 'X-offset' || label === 'Y-offset'
+            ? "-100"
+            : "0"
+          }
+          max={
+            label === 'X-offset' || label === 'Y-offset'
+            ? "100"
+            : label === 'Opacity'? "1"
+            // : label === 'Blur radius' ? "100"
+            : "100"
+          }
+          value={value}
+          class="slider"
+          id="myRange"
+          onChange={(e) => onChange(e.target.value)}
+        />
       </SliderContainer>
     )
   }
