@@ -1,26 +1,20 @@
 
-import { Rectangle, RoundedRectangle, Circle } from 'components/Shapes';
-
 const SELECT_SHAPE = 'SELECT_SHAPE';
 const LOAD_SHADOW_PROPERTY = 'LOAD_SHADOW_PROPERTY';
 const UPDATE_SHADOW_PROPERTY = 'UPDATE_SHADOW_PROPERTY';
 
 const initialState = {
-  ActiveShape: Rectangle,
   shapes: [
     {
       id: 'rectangle',
-      Shape: Rectangle,
       isSelected: true
     },
     {
       id: 'rounded-rectangle',
-      Shape: RoundedRectangle,
       isSelected: false
     },
     {
       id: 'circle',
-      Shape: Circle,
       isSelected: false
     }
   ],
@@ -36,7 +30,6 @@ const initialState = {
       isActive: true
     }
   ],
-  activeShadow: {},
   boxShadow: '0px 4px 0px 2px rgba(0,0,0,0,0.25)'
 }
 
@@ -54,12 +47,11 @@ export default (state = initialState, action) => {
           return { ...item, isSelected: false }
         }
       });
-      const selectedShape = updatedShapes.find(item=> item.isSelected === true);
-      return { ...state, shapes: updatedShapes,  ActiveShape: selectedShape.Shape }
+      return { ...state, shapes: updatedShapes }
 
     case UPDATE_SHADOW_PROPERTY:{
-      const { key, value } = payload;
-      const { activeShadow } = state;
+      const { key, value, id } = payload;
+      const activeShadow = state.shadowControls.find(item=> item.isActive === true);
       const {
         xOffset,
         yOffset,
@@ -84,12 +76,17 @@ export default (state = initialState, action) => {
       const colorCode = `rgba(${r},${g},${b},${opa})`
       const cssCode = `${offsetX}px ${offsetY}px ${blur}px ${spr}px ${colorCode}`;
 
+      const updatedShadowControls = state.shadowControls.map(item => {
+        if (item.id === id) {
+          return { ...item, [key] : value }
+        }else {
+          return item
+        }
+      })
+
       return {
         ...state,
-        activeShadow: {
-          ...state.activeShadow,
-          [key] : value
-        },
+        shadowControls: updatedShadowControls,
         boxShadow: cssCode
       }
     }
@@ -103,7 +100,7 @@ export const loadShadowproperty = () => ({ type: LOAD_SHADOW_PROPERTY });
 
 export const selectShape = (shapeId) => ({ type: SELECT_SHAPE, payload: shapeId });
 
-export const updateShadowProperty = ({ key, value }) => ({
+export const updateShadowProperty = ({ key, value, id }) => ({
   type: UPDATE_SHADOW_PROPERTY,
-  payload: { key, value }
+  payload: { key, value, id }
 })

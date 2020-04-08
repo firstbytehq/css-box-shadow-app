@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import publicState from './reducer';
+import publicState from 'reducer';
 
 const store = createStore(publicState)
 

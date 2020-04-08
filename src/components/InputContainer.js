@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Input from './Input';
+import Input from 'components/Input';
 
 import { updateShadowProperty } from 'reducer';
 
-const InputContainer = ({ activeShadow, updateShadowProperty }) => {
+const InputContainer = ({ shadowControls, updateShadowProperty }) => {
+  const activeShadow = shadowControls.find(item=> item.isActive === true);
   const {
+    id,
     xOffset,
     yOffset,
     spread,
@@ -22,10 +24,10 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
       onChange={(value) => {
         if (isNaN(value)) {
           if (value === '-') {
-            updateShadowProperty({ key: 'xOffset', value })
+            updateShadowProperty({ key: 'xOffset', value, id })
           }
         }else {
-          updateShadowProperty({ key: 'xOffset', value })
+          updateShadowProperty({ key: 'xOffset', value, id })
         }
       }}
     />
@@ -35,10 +37,10 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
       onChange={(value) => {
         if (isNaN(value)) {
           if (value === '-') {
-            updateShadowProperty({ key: 'yOffset', value })
+            updateShadowProperty({ key: 'yOffset', value, id })
           }
         }else {
-          updateShadowProperty({ key: 'yOffset', value })
+          updateShadowProperty({ key: 'yOffset', value, id })
         }
       }}
     />
@@ -47,7 +49,7 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
       value={spread}
       onChange={(value) => {
         if (!isNaN(value) && value.search('-') === -1) {
-          updateShadowProperty({ key: 'spread', value })
+          updateShadowProperty({ key: 'spread', value, id })
         }
       }}
     />
@@ -56,7 +58,7 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
       value={blurRadius}
       onChange={(value) => {
         if (!isNaN(value) && value.search('-') === -1) {
-          updateShadowProperty({ key: 'blurRadius', value })
+          updateShadowProperty({ key: 'blurRadius', value, id })
         }
       }}
     />
@@ -65,7 +67,7 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
       value={opacity}
       onChange={(value) => {
         if (!isNaN(value) && value.search('-') === -1) {
-          updateShadowProperty({ key: 'opacity', value})
+          updateShadowProperty({ key: 'opacity', value, id})
         }
       }}
     />
@@ -73,12 +75,12 @@ const InputContainer = ({ activeShadow, updateShadowProperty }) => {
       type='color'
       label='Shadow color'
       value={shadowColor}
-      onChange={(value) => updateShadowProperty({ key: 'shadowColor', value })}
+      onChange={(value) => updateShadowProperty({ key: 'shadowColor', value, id })}
     />
     </>
   )
 }
 
-const mapStateToProps = state => ({ activeShadow: state.activeShadow })
+const mapStateToProps = state => ({ shadowControls: state.shadowControls })
 
 export default connect(mapStateToProps, {updateShadowProperty})(InputContainer)

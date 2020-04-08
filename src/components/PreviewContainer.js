@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 
+import { Rectangle, RoundedRectangle, Circle } from 'components/Shapes';
+
 
 const Container = styled.div`
   width: 480px;
@@ -25,9 +27,22 @@ const Text = styled.span`
   color: #FFFFFF;
 `
 
-const PreviewContainer = ({ ActiveShape, shapes, boxShadow }) => {
+const PreviewContainer = ({ shapes, boxShadow }) => {
 
   const selectedShape = shapes.find(item=> item.isSelected === true);
+
+  let ActiveShape;
+
+  switch (selectedShape.id) {
+    case 'rounded-rectangle':
+      ActiveShape = RoundedRectangle;
+      break;
+    case 'circle':
+      ActiveShape = Circle;
+      break;
+    default:
+      ActiveShape = Rectangle;
+  }
 
   const Preview = styled(ActiveShape)`
     width: ${selectedShape.id === 'circle' ? '200px' : '250px'};
@@ -51,7 +66,6 @@ const PreviewContainer = ({ ActiveShape, shapes, boxShadow }) => {
 }
 
 const mapStateToProps = (state) => ({
-  ActiveShape: state.ActiveShape,
   shapes: state.shapes,
   boxShadow: state.boxShadow
 })

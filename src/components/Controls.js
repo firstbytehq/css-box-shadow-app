@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import InputContainer from './InputContainer';
+import InputContainer from 'components/InputContainer';
 
 const Line = styled.div`
   width: 366px; /* 379 */

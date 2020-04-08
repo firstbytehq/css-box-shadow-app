@@ -6,6 +6,8 @@ import { Label } from 'components/Input';
 
 import { selectShape } from 'reducer';
 
+import { Rectangle, RoundedRectangle, Circle } from 'components/Shapes';
+
 const ShapeContainer = styled.div`
   width: 483px;
   height: 107px;
@@ -25,7 +27,20 @@ const SelectShape = ({ shapes, selectShape }) => (
     <ShapeContainer>
       {
         shapes.map(shape => {
-          const { Shape, isSelected, id } = shape;
+          const { isSelected, id } = shape;
+
+          let Shape;
+          switch (id) {
+            case 'rounded-rectangle':
+              Shape = RoundedRectangle;
+              break;
+            case 'circle':
+              Shape = Circle;
+              break;
+            default:
+              Shape = Rectangle;
+          }
+
           return(
             <Shape isSelected={isSelected} onClick = { () => selectShape(id)} key={id} />
           )
