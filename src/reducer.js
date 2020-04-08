@@ -1,6 +1,5 @@
 
 const SELECT_SHAPE = 'SELECT_SHAPE';
-const LOAD_SHADOW_PROPERTY = 'LOAD_SHADOW_PROPERTY';
 const UPDATE_SHADOW_PROPERTY = 'UPDATE_SHADOW_PROPERTY';
 
 const initialState = {
@@ -36,8 +35,6 @@ const initialState = {
 export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case LOAD_SHADOW_PROPERTY:
-      return { ...state, activeShadow: initialState.shadowControls[0] }
 
     case SELECT_SHAPE:
       const updatedShapes = state.shapes.map(item => {
@@ -95,8 +92,6 @@ export default (state = initialState, action) => {
       return state
   }
 }
-
-export const loadShadowproperty = () => ({ type: LOAD_SHADOW_PROPERTY });
 
 export const selectShape = (shapeId) => ({ type: SELECT_SHAPE, payload: shapeId });
 

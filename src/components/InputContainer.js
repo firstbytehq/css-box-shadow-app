@@ -45,20 +45,20 @@ const InputContainer = ({ shadowControls, updateShadowProperty }) => {
       }}
     />
     <Input
-      label='Spread'
-      value={spread}
-      onChange={(value) => {
-        if (!isNaN(value) && value.search('-') === -1) {
-          updateShadowProperty({ key: 'spread', value, id })
-        }
-      }}
-    />
-    <Input
       label='Blur radius'
       value={blurRadius}
       onChange={(value) => {
         if (!isNaN(value) && value.search('-') === -1) {
           updateShadowProperty({ key: 'blurRadius', value, id })
+        }
+      }}
+    />
+    <Input
+      label='Spread'
+      value={spread}
+      onChange={(value) => {
+        if (!isNaN(value) && value.search('-') === -1) {
+          updateShadowProperty({ key: 'spread', value, id })
         }
       }}
     />
