@@ -29,7 +29,14 @@ const Text = styled.span`
 
 const PreviewContainer = ({ shapes, shadowControls }) => {
 
-  const boxShadow = shadowControls.find(item=> item.isActive === true).boxShadow;
+  let boxShadow = '';
+  shadowControls.forEach((item, index)=> {
+    if (index === 0) {
+      boxShadow = item.boxShadow
+    }else {
+      boxShadow = boxShadow + ',' + item.boxShadow
+    }
+  })
 
   const selectedShape = shapes.find(item=> item.isSelected === true);
 
