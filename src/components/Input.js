@@ -85,7 +85,7 @@ margin-bottom: 50px;
 }
 `;
 const Color = styled.span`
-  width: 87px;
+  width: 90px;
   height: 24px;
   background: #F5EFEF;
   border-radius: 3px;

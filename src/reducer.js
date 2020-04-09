@@ -23,14 +23,14 @@ const initialState = {
   shadowControls: [
     {
       id: Math.floor(Math.random() * 100) + 1,
-      xOffset: 0,
-      yOffset: 4,
-      spread: 0,
-      blurRadius: 2,
-      opacity: 0.25,
-      shadowColor: '#000000',
+      xOffset: 10,
+      yOffset: 10,
+      spread: 10,
+      blurRadius: 0,
+      opacity: 0.5,
+      shadowColor: '#d20050',
       isActive: true,
-      boxShadow: '0px 4px 0px 2px rgba(0,0,0,0,0.25)'
+      boxShadow: '10px 10px 10px 0px rgba(210,0,80,0.5)'
     }
   ],
 }

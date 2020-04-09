@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const CodeContainer = styled.div`
   width: 483px;
-  height: 144px;
+  height: 165px; /*144*/
   border: 2px solid #F5EFEF;
   box-sizing: border-box;
   border-radius: 10px;
@@ -90,7 +90,7 @@ const CssCode = ({ shadowControls }) => {
         )
       }
     >
-      Copy css
+      Copy CSS
     </Button>
   </>
 )}

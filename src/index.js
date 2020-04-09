@@ -7,6 +7,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import publicState from 'reducer';
+import WebFontLoader from 'webfontloader';
+
+WebFontLoader.load({
+  google: {
+    families: ['Merriweather Sans']
+  }
+});
 
 const store = createStore(publicState)
 
