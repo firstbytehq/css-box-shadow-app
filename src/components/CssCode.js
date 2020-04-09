@@ -15,7 +15,8 @@ const CodeContainer = styled.div`
   justify-content: center;
   align-items: center;
   overflow: auto;
-  padding: 5px;
+  flex-wrap: wrap;
+  padding: ${props => props.multipleShadow ? '10px' : '5px'};
 `;
 const Button = styled.button`
   width: 200px;
@@ -73,7 +74,7 @@ const CssCode = ({ shadowControls }) => {
 
   return(
   <>
-    <CodeContainer>
+    <CodeContainer multipleShadow={shadowControls.length>1 ? true : false}>
       <Code>
          {`-webkit-box-shadow: ${boxShadow};`} <br/>
          {`-moz-box-shadow: ${boxShadow};`} <br/>

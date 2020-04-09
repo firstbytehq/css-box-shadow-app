@@ -44,10 +44,11 @@ const BoxShadow = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   position:relative;
-  ${'' /* z-index:1; */}
+  z-index:50;
   :hover{
     border: 3px solid #C22256;
     box-sizing: border-box;
+    ${'' /* z-index: auto; */}
     .delete {
       width: 31px;
       height: 31px;
@@ -65,7 +66,7 @@ const BoxShadow = styled.div`
       position:absolute;
       top:-15px;
       right: -15px;
-      z-index: 15;
+      z-index: 100;
       cursor: pointer;
     }
   }
@@ -93,10 +94,13 @@ const Container = styled.div`
 const Controls = ({ shadowControls, addShadow, deleteShadow, selectActiveShadow }) => {
 
 // WIP
-const deleteShadowProperty = ({ e,id }) => {
-  // e.target.parentNode.remove();
-    deleteShadow(id);
-  e.stopPropagation();
+const deleteShadowProperty = ({ e, id }) => {
+    if (shadowControls.find(item => (item.id === id) && item.isActive === true)) {
+      alert('This operation is not possible in active shadow')
+    }else {
+      e.stopPropagation();
+      deleteShadow(id);
+    }
 }
 
   return(
@@ -131,8 +135,7 @@ const deleteShadowProperty = ({ e,id }) => {
               {shadowControls.length > 1 ?
                 <div
                   class="delete"
-                  //onClick={(e) => {e.stopPropagation();deleteShadow(id)}}
-                  onClick={ e => deleteShadowProperty({ e,id })}
+                  onClick={ e => deleteShadowProperty({ e, id }) }
                 >
                   <span>x</span>
                 </div>

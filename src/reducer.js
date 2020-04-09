@@ -123,14 +123,7 @@ export default (state = initialState, action) => {
       }
     }
 
-    case DELETE_SHADOW:{
-      console.log('delete shadow',payload,state.shadowControls.filter(item => item.id !== payload));
-      //return { ...state, shadowControls: state.shadowControls.filter(item => item.id !== payload)}
-      break;
-    }
-
     case SELECT_ACTIVE_SHADOW:{
-      // console.log('select active shadow',payload);
       const controls = state.shadowControls.map(item => {
         if (item.id === payload) {
           return { ...item, isActive: true }
@@ -140,6 +133,10 @@ export default (state = initialState, action) => {
       });
 
       return { ...state, shadowControls: controls }
+    }
+
+    case DELETE_SHADOW:{
+      return { ...state, shadowControls: state.shadowControls.filter(item => item.id !== payload)}
     }
 
     default:
