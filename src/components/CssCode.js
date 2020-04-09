@@ -14,6 +14,9 @@ const CodeContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
+  flex-wrap: wrap;
+  padding: ${props => props.multipleShadow ? '10px' : '5px'};
 `;
 const Button = styled.button`
   width: 200px;
@@ -37,7 +40,7 @@ const Button = styled.button`
 `;
 const Code = styled.span`
 width: 399px;
-${'' /* height: 115px; */}
+${'' /* min-height: 115px; */}
 font-family: Merriweather Sans;
 font-style: normal;
 font-weight: normal;
@@ -45,10 +48,19 @@ font-size: 14px;
 line-height: 30px;
 text-align: center;
 color: #F5EFEF;
-
 `
 
-const CssCode = ({ boxShadow }) => {
+const CssCode = ({ shadowControls }) => {
+
+  //const boxShadow = shadowControls.find(item=> item.isActive === true).boxShadow;
+  let boxShadow = '';
+  shadowControls.forEach((item, index)=> {
+    if (index === 0) {
+      boxShadow = item.boxShadow
+    }else {
+      boxShadow = boxShadow + ',' + item.boxShadow
+    }
+  })
 
   const copyCss = (copyText) => {
     let input = document.createElement('textarea');
@@ -62,7 +74,7 @@ const CssCode = ({ boxShadow }) => {
 
   return(
   <>
-    <CodeContainer>
+    <CodeContainer multipleShadow={shadowControls.length>1 ? true : false}>
       <Code>
          {`-webkit-box-shadow: ${boxShadow};`} <br/>
          {`-moz-box-shadow: ${boxShadow};`} <br/>
@@ -83,6 +95,6 @@ const CssCode = ({ boxShadow }) => {
   </>
 )}
 
-const mapStateToProps = state => ({ boxShadow: state.boxShadow })
+const mapStateToProps = state => ({ shadowControls: state.shadowControls })
 
 export default connect(mapStateToProps)(CssCode)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 
@@ -17,6 +17,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 61px;
+  overflow: hidden;
 `;
 const Text = styled.span`
   font-family: Merriweather Sans;
@@ -24,10 +25,22 @@ const Text = styled.span`
   font-weight: normal;
   font-size: 18px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: ${ props => props.textColor };
+  ${'' /* color: #FFFFFF; */}
 `
 
-const PreviewContainer = ({ shapes, boxShadow }) => {
+const PreviewContainer = ({ shapes, shadowControls }) => {
+
+  const [previewColor, setPreviewColor] = useState('#C22256');
+
+  let boxShadow = '';
+  shadowControls.forEach((item, index)=> {
+    if (index === 0) {
+      boxShadow = item.boxShadow
+    }else {
+      boxShadow = boxShadow + ',' + item.boxShadow
+    }
+  })
 
   const selectedShape = shapes.find(item=> item.isSelected === true);
 
@@ -48,18 +61,39 @@ const PreviewContainer = ({ shapes, boxShadow }) => {
     width: ${selectedShape.id === 'circle' ? '200px' : '250px'};
     height: ${selectedShape.id === 'circle' ? '200px' : '174px'};
     border-radius: ${selectedShape.id === 'circle' && '100%'};
-    background: #C22256;
+    background: ${props => props.previewColor};
     box-shadow: ${props => props.boxShadow&& props.boxShadow}; /*0px 4px 30px rgba(0, 0, 0, 0.25);*/
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: auto;
   `;
+  const Color = styled.input`
+    opacity: 0;
+    position: absolute;
+    width: ${selectedShape.id === 'circle' ? '200px' : '250px'};
+    height: ${selectedShape.id === 'circle' ? '200px' : '174px'};
+    cursor: pointer;
+  `
+  const colorChange = (hexcolor) => {
+    hexcolor = hexcolor.replace("#", "");
+    let r = parseInt(hexcolor.substr(0,2),16);
+    let g = parseInt(hexcolor.substr(2,2),16);
+    let b = parseInt(hexcolor.substr(4,2),16);
+    let britness = ((r*299)+(g*587)+(b*114))/1000;
+    const textColour = (britness >= 128) ? 'black' : 'white';
+    setTextColor(textColour)
+  }
+  const [textColor, setTextColor] = useState('white');
 
   return (
     <Container>
-      <Preview boxShadow={boxShadow}>
-        <Text>Preview</Text>
+      <Preview boxShadow={boxShadow} previewColor={previewColor}>
+        <Color
+          type="color"
+          onChange={(e) => {setPreviewColor(e.target.value); colorChange(e.target.value)}}
+        />
+        <Text textColor={textColor}>Preview</Text>
       </Preview>
     </Container>
   )
@@ -67,7 +101,7 @@ const PreviewContainer = ({ shapes, boxShadow }) => {
 
 const mapStateToProps = (state) => ({
   shapes: state.shapes,
-  boxShadow: state.boxShadow
+  shadowControls: state.shadowControls
 })
 
 export default connect(mapStateToProps)(PreviewContainer)

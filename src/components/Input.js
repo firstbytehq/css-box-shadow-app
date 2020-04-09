@@ -68,7 +68,7 @@ margin-bottom: 50px;
   cursor: pointer;
   width: 24px;
   height: 24px;
-  background: #FFFFFF;
+  background: ${props => props.focused ? '#FFFFFF' : '#C22256'};
   border: 1.5px solid #C22256;
   box-sizing: border-box;
   border-radius: 100px;
@@ -78,7 +78,7 @@ margin-bottom: 50px;
   cursor: pointer;
   width: 24px;
   height: 24px;
-  background: #FFFFFF;
+  background: ${props => props.focused ? '#FFFFFF' : '#C22256'};
   border: 1.5px solid #C22256;
   box-sizing: border-box;
   border-radius: 100px;
@@ -99,7 +99,7 @@ const Color = styled.span`
   padding-top: 2px;
 `
 
-export default ({ type, label, value, onChange }) => {
+export default ({ type, label, value, onChange, focused }) => {
   if (type === 'color') {
     return(
       <Row>
@@ -117,7 +117,7 @@ export default ({ type, label, value, onChange }) => {
     )
   }else {
     return(
-      <SliderContainer>
+      <SliderContainer focused={focused}>
         <Row>
           <Label>{label}</Label>
           <Row>
