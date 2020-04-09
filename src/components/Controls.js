@@ -48,8 +48,6 @@ const BoxShadow = styled.div`
   :hover{
     border: 3px solid #C22256;
     box-sizing: border-box;
-      position:relative;
-      z-index: 1;
     .delete {
       width: 31px;
       height: 31px;
@@ -94,9 +92,11 @@ const Container = styled.div`
 
 const Controls = ({ shadowControls, addShadow, deleteShadow, selectActiveShadow }) => {
 
+// WIP
 const deleteShadowProperty = ({ e,id }) => {
+  // e.target.parentNode.remove();
+    deleteShadow(id);
   e.stopPropagation();
-  deleteShadow(id);
 }
 
   return(
@@ -122,23 +122,22 @@ const deleteShadowProperty = ({ e,id }) => {
           const { id, boxShadow, isActive } = item;
           return(
             <BoxShadow
+              id='previewBox'
               key={id}
               isActive={isActive && shadowControls.length > 1 }
               onClick={() => selectActiveShadow(id)}
             >
               <Text isActive={isActive && shadowControls.length > 1 }>{boxShadow}</Text>
-              <div style={{zIndex:999}} onClick={(e) => e.stopPropagation()}>
-                {shadowControls.length > 1 ?
-                  <div
-                    class="delete"
-                    //onClick={(e) => {e.stopPropagation();deleteShadow(id)}}
-                    onClick={ e => deleteShadowProperty({ e,id })}
-                  >
-                    <span>x</span>
-                  </div>
-                  : null
-                }
-              </div>
+              {shadowControls.length > 1 ?
+                <div
+                  class="delete"
+                  //onClick={(e) => {e.stopPropagation();deleteShadow(id)}}
+                  onClick={ e => deleteShadowProperty({ e,id })}
+                >
+                  <span>x</span>
+                </div>
+                : null
+              }
             </BoxShadow>
           )
         })

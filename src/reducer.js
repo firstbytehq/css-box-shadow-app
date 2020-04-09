@@ -129,7 +129,7 @@ export default (state = initialState, action) => {
     }
 
     case SELECT_ACTIVE_SHADOW:{
-      console.log('select active shadow',payload);
+      // console.log('select active shadow',payload);
       const controls = state.shadowControls.map(item => {
         if (item.id === payload) {
           return { ...item, isActive: true }
