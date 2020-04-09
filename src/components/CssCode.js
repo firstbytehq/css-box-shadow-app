@@ -14,6 +14,8 @@ const CodeContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
+  padding: 5px;
 `;
 const Button = styled.button`
   width: 200px;
@@ -37,7 +39,7 @@ const Button = styled.button`
 `;
 const Code = styled.span`
 width: 399px;
-${'' /* height: 115px; */}
+${'' /* min-height: 115px; */}
 font-family: Merriweather Sans;
 font-style: normal;
 font-weight: normal;
@@ -45,12 +47,19 @@ font-size: 14px;
 line-height: 30px;
 text-align: center;
 color: #F5EFEF;
-
 `
 
 const CssCode = ({ shadowControls }) => {
 
-  const boxShadow = shadowControls.find(item=> item.isActive === true).boxShadow;
+  //const boxShadow = shadowControls.find(item=> item.isActive === true).boxShadow;
+  let boxShadow = '';
+  shadowControls.forEach((item, index)=> {
+    if (index === 0) {
+      boxShadow = item.boxShadow
+    }else {
+      boxShadow = boxShadow + ',' + item.boxShadow
+    }
+  })
 
   const copyCss = (copyText) => {
     let input = document.createElement('textarea');
