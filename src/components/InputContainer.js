@@ -7,11 +7,6 @@ import { updateShadowProperty } from 'reducer';
 
 const InputContainer = ({ shadowControls, updateShadowProperty }) => {
 
-  // const [xoffsetFocused, setXoffsetFocused] = useState(true);
-  // const [yoffsetFocused, setYoffsetFocused] = useState(false);
-  // const [blurRadiusFocused, setBlurradiusFocused] = useState(false);
-  // const [spreadFocused, setSpreadFocused] = useState(false);
-  // const [opacityFocused, setOpacityFocused] = useState(false);
   const [focused, setFocused] = useState({
     xoffsetFocused: true,
     yoffsetFocused: false,
