@@ -6,7 +6,7 @@ import { cards } from 'assets/images';
 const Container = styled.div`
 display: flex;
 justify-content: space-around;
-margin-top: 40px;
+margin-top: 40px; /*40*/
 `;
 const Column = styled.div`
 display: flex;

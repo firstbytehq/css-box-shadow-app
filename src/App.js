@@ -14,7 +14,6 @@ import Content from 'components/Content';
 
   return (
     <>
-      <Header />
       <Introduction />
       <Content />
     </>
