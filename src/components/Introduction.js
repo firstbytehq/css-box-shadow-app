@@ -65,7 +65,7 @@ export default () => {
       <Column>
         <Heading>Box shadow generator</Heading>
         <Content>Create amazing box shadows easily and get CSS code for your project</Content>
-        <Button onClick={() => window.scrollBy(0, 672)}>Start</Button>
+        <Button onClick={() => window.scrollBy(0, 682)}>Start</Button>
       </Column>
       <Image src={cards} />
     </Container>
