@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import styled from 'styled-components';
+import { ReactGA } from 'App';
 
 const CodeContainer = styled.div`
   width: 483px;
@@ -82,12 +83,16 @@ const CssCode = ({ shadowControls }) => {
       </Code>
     </CodeContainer>
     <Button
-      onClick={() =>
+      onClick={() =>{
         copyCss(
           `-webkit-box-shadow: ${boxShadow};
            -moz-box-shadow: ${boxShadow};
             box-shadow: ${boxShadow};`
         )
+        ReactGA.event({
+        category: 'User',
+        action: 'Copied box-shadow'
+      });}
       }
     >
       Copy css
