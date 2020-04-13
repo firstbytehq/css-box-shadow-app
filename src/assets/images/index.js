@@ -1,4 +1,4 @@
-const cards = require('./cards.png');
+const cards = require('./cards.jpg');
 
 export {
   cards
