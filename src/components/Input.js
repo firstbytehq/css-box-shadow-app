@@ -23,7 +23,7 @@ const ValueContainer = styled.input`
   line-height: 30px;
   padding-top: 2px;
   color: #8D8D8D;
-  margin-right: ${props => props.label === 'Opacity'&& '20px'};
+  margin-right: ${props => props.label === 'Opacity'&& '22.5px'};
 `;
 
 export const Label = styled.span`
@@ -85,7 +85,7 @@ margin-bottom: 50px;
 }
 `;
 const Color = styled.span`
-  width: 87px;
+  width: 90px;
   height: 24px;
   background: #F5EFEF;
   border-radius: 3px;

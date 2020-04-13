@@ -26,6 +26,9 @@ line-height: 40px;
 letter-spacing: 0.03em;
 color: #FFFFFF;
 cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
 `;
 const ButtonContainer = styled.div`
   margin-top: 56px;
@@ -93,7 +96,6 @@ const Container = styled.div`
 
 const Controls = ({ shadowControls, addShadow, deleteShadow, selectActiveShadow }) => {
 
-// WIP
 const deleteShadowProperty = ({ e, id }) => {
     if (shadowControls.find(item => (item.id === id) && item.isActive === true)) {
       alert('This operation is not possible in active shadow')
@@ -110,15 +112,15 @@ const deleteShadowProperty = ({ e, id }) => {
       <ButtonContainer>
         <Button onClick={() => addShadow({
           id: Math.floor(Math.random() * 100) + 1,
-          xOffset: 0,
-          yOffset: 0,
-          spread: 0,
+          xOffset: 10,
+          yOffset: 10,
+          spread: 10,
           blurRadius: 0,
-          opacity: 1,
-          shadowColor: '#000000',
+          opacity: 0.5,
+          shadowColor: '#d20050',
           isActive: true
         })}>
-        Add new +
+        Add New +
       </Button>
       </ButtonContainer>
       {
