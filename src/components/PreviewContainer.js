@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { connect } from 'react-redux';
 
@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import { Rectangle, RoundedRectangle, Circle } from 'components/Shapes';
 
+import { setPreviewColor } from 'reducer';
 
 const Container = styled.div`
   width: 480px;
@@ -25,13 +26,10 @@ const Text = styled.span`
   font-weight: normal;
   font-size: 18px;
   line-height: 30px;
-  color: ${ props => props.textColor };
-  ${'' /* color: #FFFFFF; */}
+  color: ${ props => props.previewTextColor };
 `
 
-const PreviewContainer = ({ shapes, shadowControls }) => {
-
-  const [previewColor, setPreviewColor] = useState('#C22256');
+const PreviewContainer = ({ shapes, shadowControls, previewColor, setPreviewColor, previewTextColor }) => {
 
   let boxShadow = '';
   shadowControls.forEach((item, index)=> {
@@ -68,32 +66,29 @@ const PreviewContainer = ({ shapes, shadowControls }) => {
     align-items: center;
     cursor: auto;
   `;
-  const Color = styled.input`
-    opacity: 0;
-    position: absolute;
-    width: ${selectedShape.id === 'circle' ? '200px' : '250px'};
-    height: ${selectedShape.id === 'circle' ? '200px' : '174px'};
-    cursor: pointer;
-  `
-  const colorChange = (hexcolor) => {
-    hexcolor = hexcolor.replace("#", "");
-    let r = parseInt(hexcolor.substr(0,2),16);
-    let g = parseInt(hexcolor.substr(2,2),16);
-    let b = parseInt(hexcolor.substr(4,2),16);
-    let britness = ((r*299)+(g*587)+(b*114))/1000;
-    const textColour = (britness >= 128) ? 'black' : 'white';
-    setTextColor(textColour)
-  }
-  const [textColor, setTextColor] = useState('white');
-
+  // const Color = styled.input`
+  //   opacity: 0;
+  //   position: absolute;
+  //   width: ${selectedShape.id === 'circle' ? '200px' : '250px'};
+  //   height: ${selectedShape.id === 'circle' ? '200px' : '174px'};
+  //   background: ${props => props.previewColor};
+  //   border-radius: ${selectedShape.id === 'circle' && '100%'};
+  //   cursor: pointer;
+  // `
+//TODO: to change the preview color
+// const onChange = (value) => {
+//   setPreviewColor(value)
+// }
   return (
     <Container>
       <Preview boxShadow={boxShadow} previewColor={previewColor}>
-        <Color
-          type="color"
-          onChange={(e) => {setPreviewColor(e.target.value); colorChange(e.target.value)}}
-        />
-        <Text textColor={textColor}>Preview</Text>
+        {/* <Color
+          type='color'
+          onChange={(e) => onChange(e.target.value)}
+          //value={previewColor}
+          id="previewColor"
+        /> */}
+        <Text previewTextColor={previewTextColor}>Preview</Text>
       </Preview>
     </Container>
   )
@@ -101,7 +96,9 @@ const PreviewContainer = ({ shapes, shadowControls }) => {
 
 const mapStateToProps = (state) => ({
   shapes: state.shapes,
-  shadowControls: state.shadowControls
+  shadowControls: state.shadowControls,
+  previewColor: state.previewColor,
+  previewTextColor: state.previewTextColor
 })
 
-export default connect(mapStateToProps)(PreviewContainer)
+export default connect(mapStateToProps,{setPreviewColor})(PreviewContainer)

@@ -52,7 +52,6 @@ color: #F5EFEF;
 
 const CssCode = ({ shadowControls }) => {
 
-  //const boxShadow = shadowControls.find(item=> item.isActive === true).boxShadow;
   let boxShadow = '';
   shadowControls.forEach((item, index)=> {
     if (index === 0) {
