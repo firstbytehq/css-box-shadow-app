@@ -5,6 +5,12 @@ import { cards } from 'assets/images';
 
 const Container = styled.div`
 display: flex;
+@media(max-width: 768px) {
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: center;
+}
 justify-content: space-around;
 margin-top: 40px; /*40*/
 `;
@@ -23,6 +29,14 @@ line-height: 40px;
 letter-spacing: 0.03em;
 color: #353535;
 margin-top: 51px;
+@media(max-width: 768px) {
+  margin-top: 0px;
+  font-size: 15.84px;
+  width: 327px;
+}
+@media(max-width: 1024px){
+  font-size: 17.6px;
+}
 `;
 const Button = styled.button`
 width: 190px;
@@ -48,7 +62,14 @@ height: 458.3px;
 const Heading = styled.span`
 width: 500px;
 height: 145px;
-
+@media(max-width: 1024px) {
+  font-size: 46.4px;
+  width: 310px;
+}
+@media (max-width: 768px) {
+  font-size: 41.7px;
+  width: 310px;
+}
 font-family: Merriweather Sans;
 font-style: normal;
 font-weight: bold;

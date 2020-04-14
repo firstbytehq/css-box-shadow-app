@@ -19,6 +19,11 @@ const Container = styled.div`
   align-items: center;
   margin-bottom: 61px;
   overflow: hidden;
+  @media(max-width: 768px) {
+    width: 328px;
+    height: 272px;
+    margin-top: 50px;
+  }
 `;
 const Text = styled.span`
   font-family: Merriweather Sans;
@@ -65,6 +70,10 @@ const PreviewContainer = ({ shapes, shadowControls, previewColor, setPreviewColo
     justify-content: center;
     align-items: center;
     cursor: auto;
+    @media(max-width: 768px) {
+      width: ${selectedShape.id === 'circle' ? '150px' : '170px'};
+      height: ${selectedShape.id === 'circle' ? '150px' : '131px'};
+    }
   `;
   // const Color = styled.input`
   //   opacity: 0;

@@ -49,6 +49,9 @@ const Px = styled.span`
 const SliderContainer = styled.div`
 
 width: 366px;
+@media(max-width: 768px) {
+  width: 318.26px;
+}
 margin-bottom: 50px;
 .slider {
   -webkit-appearance: none;
@@ -56,6 +59,9 @@ margin-bottom: 50px;
   height: 4px;
   background: #C22256;
   border-radius: 100px;
+  @media(max-width: 768px) {
+    width: 318.26px;
+  }
 }
 
 .slider:hover {

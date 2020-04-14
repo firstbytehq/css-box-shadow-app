@@ -18,6 +18,9 @@ const CodeContainer = styled.div`
   overflow: auto;
   flex-wrap: wrap;
   padding: ${props => props.multipleShadow ? '10px' : '5px'};
+  @media(max-width: 768px) {
+    width: 318.26px;
+  }
 `;
 const Button = styled.button`
   width: 200px;

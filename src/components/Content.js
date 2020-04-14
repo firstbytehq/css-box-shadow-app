@@ -14,6 +14,12 @@ const Content = styled.div`
   justify-content: space-around;
   padding-top: 146px;
   padding-bottom: 50px;
+  @media(max-width: 768px) {
+    width: 768px;
+    margin-top: 50px;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 export default () => (

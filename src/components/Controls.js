@@ -10,6 +10,9 @@ const Line = styled.div`
   height: 0px;
   border: 1px solid rgba(245, 239, 239, 0.48);
   margin-top: 46px;
+  @media(max-width: 768px) {
+    width: 318.26px;
+  }
 `;
 const Button = styled.button`
 width: 127px;
@@ -34,6 +37,9 @@ const ButtonContainer = styled.div`
   margin-top: 56px;
   display: flex;
   justify-content: flex-end;
+  @media(max-width: 768px) {
+    width: 318.26px;
+  }
 `;
 const BoxShadow = styled.div`
   width: 366px;
@@ -48,6 +54,9 @@ const BoxShadow = styled.div`
   cursor: pointer;
   position:relative;
   z-index:50;
+  @media(max-width: 768px) {
+    width: 318.26px;
+  }
   :hover{
     border: 3px solid #C22256;
     box-sizing: border-box;
@@ -92,6 +101,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 366px;
+  @media(max-width: 768px) {
+    width: 318.26px;
+  }
 `
 
 const Controls = ({ shadowControls, addShadow, deleteShadow, selectActiveShadow }) => {

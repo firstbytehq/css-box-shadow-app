@@ -19,6 +19,9 @@ const ShapeContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  @media(max-width: 768px) {
+    width: 318.26px;
+  }
 `;
 
 const SelectShape = ({ shapes, selectShape }) => (
