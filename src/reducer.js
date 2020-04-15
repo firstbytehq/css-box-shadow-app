@@ -25,12 +25,12 @@ const initialState = {
       id: Math.floor(Math.random() * 100) + 1,
       xOffset: 10,
       yOffset: 10,
-      spread: 10,
       blurRadius: 0,
+      spread: 10,
       opacity: 0.5,
       shadowColor: '#d20050',
       isActive: true,
-      boxShadow: '10px 10px 10px 0px rgba(210,0,80,0.5)'
+      boxShadow: '10px 10px 0px 10px rgba(210,0,80,0.5)'
     }
   ]
 }
