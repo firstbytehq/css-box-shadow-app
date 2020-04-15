@@ -4,7 +4,6 @@ const UPDATE_SHADOW_PROPERTY = 'UPDATE_SHADOW_PROPERTY';
 const ADD_SHADOW = 'ADD_SHADOW';
 const DELETE_SHADOW = 'DELETE_SHADOW';
 const SELECT_ACTIVE_SHADOW = 'SELECT-SELECT_ACTIVE_SHADOW';
-const SET_PREVIEW_COLOR = 'SET_PREVIEW_COLOR';
 
 const initialState = {
   shapes: [
@@ -33,9 +32,7 @@ const initialState = {
       isActive: true,
       boxShadow: '10px 10px 10px 0px rgba(210,0,80,0.5)'
     }
-  ],
-  previewColor: '#C22256',
-  previewTextColor: '#FFFFFF'
+  ]
 }
 
 export default (state = initialState, action) => {
@@ -142,17 +139,6 @@ export default (state = initialState, action) => {
       return { ...state, shadowControls: state.shadowControls.filter(item => item.id !== payload)}
     }
 
-    case SET_PREVIEW_COLOR: {
-      console.log('payload',payload);
-      let hexcolor = payload.replace("#", "");
-      let r = parseInt(hexcolor.substr(0,2),16);
-      let g = parseInt(hexcolor.substr(2,2),16);
-      let b = parseInt(hexcolor.substr(4,2),16);
-      let britness = ((r*299)+(g*587)+(b*114))/1000;
-      const textColor = (britness >= 128) ? 'black' : 'white';
-      return { ...state, previewColor: payload, previewTextColor: textColor }
-    }
-
     default:
       return state
   }
@@ -170,5 +156,3 @@ export const addShadow = (shadow) => ({ type: ADD_SHADOW, payload: shadow });
 export const deleteShadow = (id) => ({ type: DELETE_SHADOW, payload: id });
 
 export const selectActiveShadow = (id) => ({ type: SELECT_ACTIVE_SHADOW, payload: id });
-
-export const setPreviewColor = (color) => ({ type: SET_PREVIEW_COLOR, payload: color });
