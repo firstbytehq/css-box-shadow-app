@@ -72,7 +72,6 @@ const CssCode = ({ shadowControls }) => {
     input.select();
     let result = document.execCommand('copy');
     document.body.removeChild(input);
-    alert("Copied");
     return result;
   }
 
