@@ -72,6 +72,7 @@ const CssCode = ({ shadowControls }) => {
     input.select();
     let result = document.execCommand('copy');
     document.body.removeChild(input);
+    alert("Copied");
     return result;
   }
 
@@ -90,7 +91,7 @@ const CssCode = ({ shadowControls }) => {
           `-webkit-box-shadow: ${boxShadow};
            -moz-box-shadow: ${boxShadow};
             box-shadow: ${boxShadow};`
-        )
+        );
         ReactGA.event({
         category: 'User',
         action: 'Copied box-shadow'

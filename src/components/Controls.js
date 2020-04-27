@@ -13,6 +13,9 @@ const Line = styled.div`
   @media(max-width: 768px) {
     width: 318.26px;
   }
+  @media(max-width: 780px) {
+    width: 325.26px;
+  }
 `;
 const Button = styled.button`
 width: 127px;
@@ -54,8 +57,12 @@ const BoxShadow = styled.div`
   cursor: pointer;
   position:relative;
   z-index:50;
+  margin-bottom: 10px;
   @media(max-width: 768px) {
     width: 318.26px;
+  }
+  @media(max-width: 780px) {
+    width: 325.26px;
   }
   :hover{
     border: 3px solid #C22256;
@@ -103,6 +110,9 @@ const Container = styled.div`
   width: 366px;
   @media(max-width: 768px) {
     width: 318.26px;
+  }
+  @media(max-width: 780px) {
+    width: 325.26px;
   }
 `
 

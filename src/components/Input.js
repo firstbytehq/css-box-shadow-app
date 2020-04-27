@@ -46,11 +46,23 @@ const Px = styled.span`
   margin-left: 8px;
 `
 
+const Container= styled.div`
+@media(max-width: 1024px) {
+  width: 325.26px;
+}
+`
+
 const SliderContainer = styled.div`
 
 width: 366px;
+@media(max-width: 1024px) {
+  width: 325.26px;
+}
 @media(max-width: 768px) {
   width: 318.26px;
+}
+@media(max-width: 414px){
+  width: 280px;
 }
 margin-bottom: 50px;
 .slider {
@@ -61,6 +73,9 @@ margin-bottom: 50px;
   border-radius: 100px;
   @media(max-width: 768px) {
     width: 318.26px;
+  };
+  @media(max-width: 1024px) {
+    width: 325.26px;
   }
 }
 
@@ -108,6 +123,7 @@ const Color = styled.span`
 export default ({ type, label, value, onChange, focused }) => {
   if (type === 'color') {
     return(
+      <Container>
       <Row>
         <Label>{label}</Label>
         <ColorRow>
@@ -120,6 +136,7 @@ export default ({ type, label, value, onChange, focused }) => {
         <Color>{value}</Color>
       </ColorRow>
       </Row>
+      </Container>
     )
   }else {
     return(
