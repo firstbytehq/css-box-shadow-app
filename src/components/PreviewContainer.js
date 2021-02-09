@@ -15,6 +15,23 @@ const Container = styled.div`
   align-items: center;
   margin-bottom: 61px;
   overflow: hidden;
+  @media(max-width: 414px){
+    width: 300px !important;
+    height: 272px !important;
+  }
+  @media(max-width: 768px) {
+    width: 328px !important;
+    height: 272px !important;
+    margin-top: 50px;
+  }
+  @media(max-width: 780px) {
+    width: 480px !important;
+    height: 350px !important;
+  }
+  @media(max-width: 1024px){
+    width: 450px;
+    height: 350px;
+  }
 `;
 const Text = styled.span`
   font-family: Merriweather Sans;
@@ -72,7 +89,6 @@ const PreviewContainer = ({ shapes, shadowControls }) => {
     const textColor = (brightness >= 128) ? 'black' : 'white';
     setPreviewTextColor(textColor)
   }
-
   return (
     <Container>
       <Preview

@@ -9,6 +9,9 @@ import CssCode from 'components/CssCode';
 const Column = styled.div`
   display: flex;
   flex-direction: column;
+  @media(max-width: 768px) {
+    width: 318.26px;
+  }
 `
 
 export default () => {
